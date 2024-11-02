@@ -1,7 +1,9 @@
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
-import Banner from '../../assets/banner.jpg'
+import { Link } from 'react-router-dom';
+
+import Banner from '../../assets/banner.png'
 import {Container,TextContent,Title,TitleHighLight} from './styles';
 
 const Home = () => {
@@ -22,10 +24,10 @@ const Home = () => {
         <Button title="Começar agora" variant="secundary" onClick=""/>
       </div>
       <div>
-        <img src={Banner} width="450px" height="250px" alt="Imagem principal"/>
+        <img src={Banner} width="650px" height="350px" alt="Imagem principal"/>
       </div>
     </Container>
     </>)
 }
 
-export { Home }
+export {Home};

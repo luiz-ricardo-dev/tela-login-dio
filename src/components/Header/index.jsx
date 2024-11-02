@@ -13,22 +13,33 @@ import {
     Wrapper
 } from './styles'
 
-const Header = () => {
+const Header = ({autenticado}) => {
   return (
     <Wrapper>
         <Container>
             <Row>
-                <img src={logo} width="60px" height="35px" alt="logo"/>
-                <BuscarInputContainer>
-                    <Input placeholder='Buscar...'/>
-                </BuscarInputContainer>
-                <Menu>Live Code</Menu>
-                <Menu>Global</Menu>
+                <img src={logo} width="95px" height="30px" alt="logo"/>
+                {autenticado ? (
+                <><BuscarInputContainer>
+                          <Input placeholder='Buscar...' />
+                      </BuscarInputContainer>
+                      <Menu>Live Code</Menu>
+                      <Menu>Global</Menu>
+                      </>
+                    ): null}
             </Row>
             <Row>
-                <MenuRight href='#'>Home</MenuRight>
-                <Button title="Entrar" />
-                <Button title="Cadastrar" />
+                {autenticado ? (
+                    <UserPicture src='https://avatars.githubusercontent.com/u/87581372?v=4' />
+                ) : (
+                    <>
+                    <MenuRight href='#'>Home</MenuRight>
+                    <Button title="Entrar" />
+                    <Button title="Cadastrar" />
+                    </>
+
+                )}
+                
             </Row>
         </Container>
     </Wrapper>
