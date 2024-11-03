@@ -5,10 +5,12 @@ import {useForm} from 'react-hook-form';
 import { MdEmail, MdLock} from 'react-icons/md'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import Banner from '../../assets/banner.jpg'
 import {Input} from '../../components/Input'
+
+import {api} from '../../services/api'
 
 import {Column,
         Container,
@@ -31,14 +33,26 @@ const schema = yup
 
 const Login = () => {
 
-  const { control, errorMessage, handleSubmit, formState: { errors, isValid }} = useForm({
+  const { control, errorMessage, handleSubmit, formState: { errors}} = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange'
   });
 
-  console.log(isValid, errors);
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = async formData => {
+    try {
+        const { data } = await api.get(`users?email=${formData.email}&password=${formData.password}`);
+        console.log('retorno api', data);
+        if(data.length === 1){
+            Navigate('/feed');
+            console.log('passou');
+        }else {
+          alert('Email ou senha nao encontrado');
+        }
+    } catch {
+      alert('Houve um erro');
+    }
+  };
 
   return ( <>
     <Header />
