@@ -76,3 +76,7 @@ export const CriarText = styled.p`
 
     color: #E23DD7;
 `
+export const ErrorText = styled.p`
+    color: #ff0000;
+    font-size: 12px;
+`
